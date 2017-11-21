@@ -3,6 +3,8 @@
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
+$rules = require(__DIR__ . '/rules.php');
+
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
@@ -43,14 +45,18 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
         'urlManager' => [
-            'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
+            'enablePrettyUrl' => true,
+            'rules' => $rules,
+        ],
+        'view' => [
+            'renderers' => [
+                'tpl' => [
+                    'class' => 'yii\smarty\ViewRenderer',
+                ],
             ],
         ],
-        */
     ],
     'params' => $params,
 ];
