@@ -10,16 +10,20 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 
+    <style>
+
+    </style>
+
     <!-- Additional CSS -->
     {block name=styles}{/block}
 </head>
 <body>
     <!-- Content -->
     {block name=nav}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #e3f2fd;">
         <a class="navbar-brand" href="#">
             <img src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-            GameCircle
+            Game Central
         </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,11 +32,11 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{$baseUrl}">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{$baseUrl}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{$baseUrl}/thread">Link</a>
+                    <a class="nav-link" href="{$baseUrl}/thread">Threads</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">

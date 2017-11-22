@@ -6,9 +6,8 @@ use Yii;
 
 class SiteController extends MainController
 {
-
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function actions()
     {
@@ -22,6 +21,7 @@ class SiteController extends MainController
     public function actionIndex()
     {
         $this->vars['hello'] = 'Welcome to Game Central';
+
         return $this->render('index.tpl', $this->vars);
     }
 
@@ -33,7 +33,7 @@ class SiteController extends MainController
     public function actionError()
     {
         $exception = Yii::$app->errorHandler->exception;
-        
+
         if ($exception !== null) {
             $this->vars['exception'] = $exception;
         }
