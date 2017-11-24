@@ -1,26 +1,34 @@
 <?php
 
+/**
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace app\controllers;
 
 use Yii;
+use app\models\Slider;
 
+/**
+ * Controller for common site pages.
+ *
+ * @author Muhammad Febriansyah <hifebriansyah@gmail.com>
+ *
+ * @since Class available since Release 1.0.0
+ */
 class SiteController extends MainController
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function actions()
-    {
-    }
-
     /**
      * Displays homepage.
      *
      * @return string
+     *
+     * @since Method available since Release 1.0.0
      */
     public function actionIndex()
     {
-        $this->vars['hello'] = 'Welcome to Game Central';
+        $this->vars['sliders'] = Slider::fetchAll();
 
         return $this->render('index.tpl', $this->vars);
     }
@@ -29,6 +37,8 @@ class SiteController extends MainController
      * Displays error.
      *
      * @return string
+     *
+     * @since Method available since Release 1.0.0
      */
     public function actionError()
     {
