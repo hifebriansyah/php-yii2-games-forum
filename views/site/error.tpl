@@ -6,7 +6,7 @@
             <h1>Whoops, something wrong...</h1>
             
             <div class="alert alert-danger">
-                {nl2br(Html::encode($message))}
+                <pre>{print_r($exception)}</pre>
             </div>
 
             <p>

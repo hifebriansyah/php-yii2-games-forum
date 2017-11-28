@@ -33,4 +33,13 @@ class MainModel extends \yii\db\ActiveRecord
      * @since Property available since Release 1.0.0
      */
     const STATUS_INACTIVE = 0;
+
+    /**
+     * label for code = 1.
+     *
+     * @var int
+     *
+     * @since Property available since Release 1.0.0
+     */
+    const SUCCESS = 1;
 }

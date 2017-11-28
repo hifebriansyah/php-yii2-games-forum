@@ -55,7 +55,7 @@ class Slider extends MainModel
      */
     public static function fetchAll()
     {
-        if(!Cache::redis()->exists(self::tableName())){
+        if (!Cache::redis()->exists(self::tableName())) {
             $results = self::find()
                 ->select(['id', 'title', 'content', 'image_url'])
                 ->where(['status_id' => self::STATUS_ACTIVE])
@@ -64,7 +64,7 @@ class Slider extends MainModel
                 ->all();
 
             Cache::setArray(self::tableName(), $results);
-        }else{
+        } else {
             $results = Cache::getArray(self::tableName());
         }
 
