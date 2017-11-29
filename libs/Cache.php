@@ -28,6 +28,24 @@ class Cache
     public static $redis;
 
     /**
+     * label for 8600 second.
+     *
+     * @var int
+     *
+     * @since Property available since Release 1.0.0
+     */
+    const ONE_DAY = 8600;
+
+    /**
+     * label for 3600 second.
+     *
+     * @var int
+     *
+     * @since Property available since Release 1.0.0
+     */
+    const ONE_HOUR = 3600;
+
+    /**
      * Get redis instance.
      *
      * @return \Redis

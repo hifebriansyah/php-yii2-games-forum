@@ -1,3 +1,28 @@
+body {
+    background-color: #EFEFEF;
+    color: #555555;
+}
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cover{
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+#search-input{
+    width: 100%;
+}
+
+/* navbar */
+
 .navbar-dark .navbar-brand {
 	color: #F65858;
 }
@@ -20,9 +45,24 @@
 	position: relative;
 }
 
+/* caraousel */
+
+.carousel {
+    margin-bottom: 30px;
+} 
+
 .carousel-img {
-	height: 495px;
 	opacity: 0.7;
+    position: relative;
+    padding-top: 35%;
+}
+
+.carousel-img div{
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0
+
 }
 
 .carousel-item {
@@ -39,20 +79,6 @@
 	padding: 0px;
 	padding-left: 15px;
 	font-size: 14px;
-}
-
-.cover{
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	background-position: center center;
-	background-repeat: no-repeat;
-}
-
-#search-input{
-    width: 100%;
-    max-width: 300px;
 }
 
 /* auto complete */
@@ -112,8 +138,157 @@ ul.ui-menu li:hover{
     padding-right: 20px;
 } 
 
+/* card */
+
+.card {
+    overflow: hidden;
+    margin-bottom: 24px;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.card .cover {
+    width: 100%;
+    display: block;
+}
+
+.card h3 {
+    font-size: 16px;
+    line-height: 19px;
+    margin: 10px;
+    margin-bottom: 0px;
+    display: block;
+}
+
+.card span {
+    margin: 10px;
+    margin-top: 0px;
+    font-size: 12px;
+    font-style: italic;
+    display: block;
+}
+
+/* heading */
+
+.heading {
+    margin-bottom: 24px;
+}
+
+.heading h2{
+    line-height: 34px;
+    padding: 0;
+    margin: 0;
+    font-size: 28px;
+}
+
+.heading span{
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.heading a {
+    background-color: #F65858;
+    font-size: 14px;
+    padding: 10px;
+    display: block;
+    color: #fff;
+    max-width: 60px;
+    text-align: right;
+}
+
 /* etc */
+
 .form-control:focus {
-  border-color: #FF0000;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(246, 88, 88, 0.6);
+    border-color: #FF0000;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(246, 88, 88, 0.6);
+}
+
+.col-sm.half{
+    width: 50%;
+}
+
+/* responsive */
+
+@media (max-width: 575px) {
+    /* card */
+
+    .col-sm.half .card .cover{
+        position: relative;
+        padding-top: 120%;
+        min-height: 160px;
+    }
+
+    .card .cover div{
+        position: relative;
+        height: 100%;
+        top: 0;
+        left: 0
+    }
+}
+
+@media (min-width: 576px) {
+
+
+    /* card */
+
+    .card {
+        width: 240px;
+    }
+
+    .card .cover {
+        height: 288px;
+    }
+}
+
+@media (min-width: 768px) {
+
+    /* heading */
+
+    .heading a {
+        max-width: 100px;
+        text-align: left;
+    }
+
+    /* card */
+
+    .card {
+        width: 330px;
+    }
+
+    .card .cover {
+        height: 396px;
+    }
+}
+
+@media (min-width: 992px) {
+
+    /* auto complete*/
+
+    #search-input {
+        max-width: 300px;
+    }
+
+    /* card */
+
+    .card {
+        width: 210px;
+    }
+
+    .card .cover {
+        height: 252px;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    /* card */
+
+    .card {
+        width: 255px;
+    }
+
+    .card .cover {
+        height: 306px;
+
+    }
 }

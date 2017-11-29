@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace app\models;
 
 use libs\Cache;
@@ -56,13 +61,53 @@ class Game extends MainModel
         if (!Cache::redis()->exists(self::tableName().':'.$title)) {
             $response = GiantBomb::scrapGamesByTitle($title);
 
-            if ($response['status'] == self::SUCCESS) {
-                Cache::setArray(self::tableName().':'.$title, $response['data']);
+            if ($response['status'] == GiantBomb::SUCCESS) {
+                Cache::setArray(self::tableName().':'.$title, $response);
+                Cache::redis()->expire(self::tableName().':popular', Cache::ONE_DAY);
             }
         } else {
-            $response['data'] = Cache::getArray(self::tableName().':'.$title);
+            $response = Cache::getArray(self::tableName().':'.$title);
         }
 
         return $response;
+    }
+
+    /**
+     * Fetch popular data.
+     *
+     * Return top 4 popular games.
+     *
+     * @return array
+     *
+     * @since Method available since Release 1.0.0
+     */
+    public static function fetchPopular()
+    {
+        if (!Cache::redis()->exists(self::tableName().':popular')) {
+            // if safe, use raw query, so much faster than orm
+            $results = \Yii::$app->db->createCommand('
+                    SELECT
+                        `games`.`source_url`,
+                        `games`.`title`,
+                        `games`.`platform`,
+                        `games`.`image_url`
+                    FROM `games`
+                    LEFT JOIN `threads` ON `games`.id = `threads`.`game_id` AND `threads`.`status_id` = 1
+                    WHERE `games`.`status_id` = 1
+                    GROUP by `games`.`id`
+                    ORDER BY COUNT(`games`.`title`) DESC
+                    LIMIT 4
+                ')
+                ->queryAll();
+
+            if ($results) {
+                Cache::setArray(self::tableName().':popular', $results);
+                Cache::redis()->expire(self::tableName().':popular', Cache::ONE_HOUR);
+            }
+        } else {
+            $results = Cache::getArray(self::tableName().':popular');
+        }
+
+        return $results;
     }
 }

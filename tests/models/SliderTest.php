@@ -15,8 +15,31 @@ use app\models\Slider;
  */
 class SliderTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * Test model.
+     *
+     * @var \app\models\Slider
+     *
+     * @since Property available since Release 1.0.0
+     */
     private $model;
+
+    /**
+     * Test data.
+     *
+     * @var array
+     *
+     * @since Property available since Release 1.0.0
+     */
     private $data;
+
+    /**
+     * Test table name.
+     *
+     * @var string
+     *
+     * @since Property available since Release 1.0.0
+     */
     private $tableName = 'sliders';
 
     /**

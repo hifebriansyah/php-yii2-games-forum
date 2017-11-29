@@ -9,6 +9,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Slider;
+use app\models\Game;
 
 /**
  * Controller for common site pages.
@@ -29,6 +30,7 @@ class SiteController extends MainController
     public function actionIndex()
     {
         $this->vars['sliders'] = Slider::fetchAll();
+        $this->vars['popularGames'] = Game::fetchPopular();
 
         return $this->render('index.tpl', $this->vars);
     }

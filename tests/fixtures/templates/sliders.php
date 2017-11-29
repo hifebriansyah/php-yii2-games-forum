@@ -1,7 +1,5 @@
 <?php
 
-$security = Yii::$app->getSecurity();
-
 $data = [
     [
         'title' => 'Death or Alive 5',
