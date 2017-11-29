@@ -14,7 +14,7 @@ use yii\db\Migration;
  *
  * @since Class available since Release 1.0.0
  */
-class m200000_000000_threads extends Migration
+class m300000_000000_thread_comments extends Migration
 {
     /**
      * migration table name.
@@ -23,7 +23,7 @@ class m200000_000000_threads extends Migration
      *
      * @since Property available since Release 1.0.0
      */
-    public $table = "threads";
+    public $table = "thread_comments";
 
     /**
      * @inheritdoc
@@ -34,10 +34,8 @@ class m200000_000000_threads extends Migration
         $this->createTable($this->table, [
             'id' => $this->primaryKey(),
             'user_id' => $this->integer()->notNull(),
-            'game_id' => $this->integer()->notNull(),
-            'title' => $this->string(80)->notNull(),
+            'thread_id' => $this->integer()->notNull(),
             'content' => $this->text(),
-            'views_count' => $this->integer()->notNull()->defaultValue(0),
             'created_at' => $this->timestamp()->defaultValue(null),
             'updated_at' => $this->timestamp()->defaultValue(null),
             'status_id' => $this->integer()->defaultValue(1),
@@ -49,20 +47,10 @@ class m200000_000000_threads extends Migration
 
         // add foreign key for table `users`
         $this->addForeignKey(
-            'fk-thread-user_id',
+            'fk-thread-comment-thread_id',
+            'thread_comments',
+            'thread_id',
             'threads',
-            'user_id',
-            'users',
-            'id',
-            'CASCADE'
-        );
-
-        // add foreign key for table `games`
-        $this->addForeignKey(
-            'fk-thread-game_id',
-            'threads',
-            'game_id',
-            'games',
             'id',
             'CASCADE'
         );

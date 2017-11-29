@@ -33,7 +33,7 @@ class m100000_000000_games extends Migration
         $this->createTable($this->table, [
             'id' => $this->primaryKey(),
             'title' => $this->string(80)->notNull(),
-            'content' => $this->string(80),
+            'content' => $this->text(),
             'release_year' => $this->string(4),
             'platform' => $this->string(255),
             'source_url' => $this->string(255)->notNull(),

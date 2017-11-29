@@ -59,11 +59,11 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{$baseUrl}/thread">Threads</a>
+                        <a class="nav-link" href="{$baseUrl}">Threads</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{$baseUrl}/under-development">Reviews</a>
+                        <a class="nav-link" href="{$baseUrl}">Reviews</a>
                     </li>
                 </ul>
 

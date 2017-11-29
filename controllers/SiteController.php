@@ -8,8 +8,9 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Slider;
 use app\models\Game;
+use app\models\Slider;
+use app\models\Thread;
 
 /**
  * Controller for common site pages.
@@ -31,6 +32,7 @@ class SiteController extends MainController
     {
         $this->vars['sliders'] = Slider::fetchAll();
         $this->vars['popularGames'] = Game::fetchPopular();
+        $this->vars['popularThreads'] = Thread::fetchPopular();
 
         return $this->render('index.tpl', $this->vars);
     }

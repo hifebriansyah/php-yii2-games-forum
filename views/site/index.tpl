@@ -1,13 +1,8 @@
 {extends file="@app/views/layouts/main.tpl"}
 
-{block name=styles}
-    <style>
-    </style>
-{/block}
-
 {block name=scripts}
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="{$baseUrl}/static/js/site/index.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="{$baseUrl}/static/js/site/index.js"></script>
 {/block}
 
 {block name=content}
@@ -53,19 +48,21 @@
         </div>
     </div>
 
-    <div class="row">
-        {foreach from=$popularGames name=popularGame item=val}
-        <div class="col-sm half">
-            <div class="card">
-                <div class="cover" style="background-image: url({$val['image_url']});"><div></div></div>
-                <h3 class="ellipsis">{$val['title']}</h3>
-                <span class="ellipsis">{$val['platform']}</span>
-            </div>
+    <div class="popular-games">
+        <div class="row">
+            {foreach from=$popularGames item=val}
+                <div class="col-sm half">
+                    <div class="card">
+                        <div class="cover" style="background-image: url({$val['image_url']});"><div></div></div>
+                        <h3 class="ellipsis">{$val['title']}</h3>
+                        <span class="ellipsis">{$val['platform']}</span>
+                    </div>
+                </div>
+            {/foreach}
         </div>
-        {/foreach}
     </div>
 
-    <!-- <div class="d-flex flex-row heading">
+    <div class="d-flex flex-row heading mt-1">
         <div class="mr-auto">
             <h2>Popular Threads</h2>
             <span>Join the most commented threads!!</span>
@@ -74,6 +71,37 @@
         <div class="align-self-end"">
             <a href="#">See More</a>
         </div>
-    </div> -->
+    </div>
+
+    <div class="popular-thread">
+        {foreach from=$popularThreads item=val}
+            <div class="thread-card clearfix">
+                <div class="game-cover cover float-left" style="background-image: url({$val['image_url']});"><div></div></div>
+                <div class="thread-card-body float-left">
+                    <h3 class="ellipsis">{$val['title']}</h3>
+                    <span class="ellipsis sub-h">{$val['game_title']} ({$val['platform']})</span>
+                    <p class="ellipsis">{$val['content']}</p>
+
+                    <div class="d-flex flex-row">
+                        <div class="cover rounded-circle" style="background-image: url(https://randomuser.me/api/portraits/women/{$val['user_id']}.jpg);"></div>
+
+                        <div>
+                            <span class="d-none d-lg-inline">By</span> <a href="#">{substr($val['email'], 0, strrpos($val['email'], "@"))}</a>
+                        </div>
+
+                        <div>
+                            <i class="fa fa-comment d-inline-block align-top"></i> {$val['comments_count']}
+                            <span class="d-none d-lg-inline">comments</span>
+                        </div>
+
+                        <div>
+                            <i class="fa fa-bullseye d-inline-block align-top"></i> {$val['views_count']}
+                            <span class="d-none d-lg-inline"> visits</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {/foreach}
+    </div>
 </div>
 {/block}

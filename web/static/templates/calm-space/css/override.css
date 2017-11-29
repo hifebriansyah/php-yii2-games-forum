@@ -2,10 +2,16 @@ body {
     background-color: #EFEFEF;
     color: #555555;
 }
+a, a:hover {
+    color: #F65858;
+}
 
 .ellipsis {
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    width: 100%;
 }
 
 .cover{
@@ -145,6 +151,8 @@ ul.ui-menu li:hover{
     margin-bottom: 24px;
     white-space: nowrap;
     width: 100%;
+    box-shadow: 0px 0px 2px #888888;
+    border:none;
 }
 
 .card .cover {
@@ -166,6 +174,80 @@ ul.ui-menu li:hover{
     font-size: 12px;
     font-style: italic;
     display: block;
+}
+
+/* thread card */
+
+
+.thread-card {
+    background-color: #fff;
+    width: 100%;
+    margin-bottom: 24px;
+    box-shadow: 0px 0px 2px #888888;
+    border-radius: .25rem;
+    overflow: hidden;
+    height: 150px;
+}
+
+.thread-card .game-cover {
+    width: 120px;
+    height: 100%;
+    display: block;
+}
+
+.thread-card-body {
+    width: calc(100% - 120px);
+    padding: 15px;
+}
+
+.thread-card h3 {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 19px;
+    margin: 0;
+}
+
+.thread-card p {
+    padding-top: 10px;
+    height: 40px;
+    font-size: 20px;
+}
+
+.thread-card .sub-h {
+    font-size: 14px;
+    font-style: italic;
+    line-height: 17px;
+    margin: 0;
+    font-weight: lighter;
+}
+
+.thread-card .flex-row {
+    font-size: 13px;
+}
+
+.thread-card .flex-row > div {
+    white-space: nowrap;
+}
+
+.thread-card .flex-row > div:nth-child(2),
+.thread-card .flex-row > div:nth-child(3) {
+    margin-right: 20px;
+}
+
+.thread-card .flex-row .cover{
+    height: 32px;
+    width: 32px !important;
+    display: block;
+    position: relative;
+    top: -5px;
+    margin-right: 10px;
+}
+
+.thread-card i{
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 20px;
 }
 
 /* heading */
@@ -194,6 +276,7 @@ ul.ui-menu li:hover{
     color: #fff;
     max-width: 60px;
     text-align: right;
+    border-radius: .25rem;
 }
 
 /* etc */

@@ -95,7 +95,7 @@ class Game extends MainModel
                     LEFT JOIN `threads` ON `games`.id = `threads`.`game_id` AND `threads`.`status_id` = 1
                     WHERE `games`.`status_id` = 1
                     GROUP by `games`.`id`
-                    ORDER BY COUNT(`games`.`title`) DESC
+                    ORDER BY COUNT(`games`.`id`) DESC
                     LIMIT 4
                 ')
                 ->queryAll();

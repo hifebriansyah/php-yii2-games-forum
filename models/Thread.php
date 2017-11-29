@@ -7,6 +7,8 @@
 
 namespace app\models;
 
+use libs\Cache;
+
 /**
  * Thread model.
  *
@@ -36,8 +38,8 @@ class Thread extends \yii\db\ActiveRecord
             [['user_id', 'game_id', 'status_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['title', 'content'], 'string', 'max' => 80],
-            [['game_id'], 'exist', 'skipOnError' => true, 'targetClass' => Games::className(), 'targetAttribute' => ['game_id' => 'id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['game_id'], 'exist', 'skipOnError' => true, 'targetClass' => Game::className(), 'targetAttribute' => ['game_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -55,5 +57,53 @@ class Thread extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(Users::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * Fetch popular data.
+     *
+     * Return top 4 popular games.
+     *
+     * @return array
+     *
+     * @since Method available since Release 1.0.0
+     */
+    public static function fetchPopular()
+    {
+        if (!Cache::redis()->exists(self::tableName().':popular')) {
+            // if safe, use raw query, so much faster than orm
+            $results = \Yii::$app->db->createCommand('
+                    SELECT
+                        `threads`.`title`,
+                        `threads`.`content`,
+                        `threads`.`created_at`,
+                        `threads`.`views_count`,
+                        `games`.`source_url`,
+                        `games`.`title` as `game_title`,
+                        `games`.`platform`,
+                        `games`.`image_url`,
+                        `users`.`email`,
+                        `users`.`id` as `user_id`,
+                        count(`thread_comments`.id) as comments_count
+                    FROM `threads`
+                    JOIN `thread_comments` ON `thread_comments`.thread_id = `threads`.`id` AND `thread_comments`.`status_id` = 1
+                    JOIN `games` ON `games`.id = `threads`.`game_id` AND `games`.`status_id` = 1
+                    JOIN `users` ON `users`.id = `threads`.`user_id` AND `users`.`status_id` = 1
+                    WHERE `threads`.`status_id` = 1
+                    GROUP by `threads`.`id`
+                    ORDER BY COUNT(`threads`.`id`) DESC
+                    LIMIT 4
+                ')
+                ->queryAll();
+
+            if ($results) {
+                Cache::setArray(self::tableName().':popular', $results);
+                Cache::redis()->expire(self::tableName().':popular', Cache::ONE_HOUR);
+            }
+        } else {
+            $results = Cache::getArray(self::tableName().':popular');
+        }
+
+        return $results;
     }
 }
