@@ -17,4 +17,16 @@ class GameController extends MainController
 
         return Game::fetchByTitle($_GET['title']);
     }
+
+    /**
+     * Displays detail.
+     *
+     * @return string
+     */
+    public function actionDetail($url)
+    {
+        $this->vars['game'] = Game::find()->where(['like', 'source_url', $url])->one();
+
+        return $this->render('detail.tpl', $this->vars);
+    }
 }

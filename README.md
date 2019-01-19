@@ -9,6 +9,7 @@ _This file is written using "markdown"_
 * /libs
 * /models 
 * /tests
+* /migrations
 
 ## Minimum software specs
 * PHP 5.5.9-1

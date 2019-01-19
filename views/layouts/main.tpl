@@ -43,7 +43,7 @@
     {block name=nav}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #e3f2fd;">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{$baseUrl}">
                 <i class="fa fa-gamepad d-inline-block align-top"></i>
                 Game Central
             </a>

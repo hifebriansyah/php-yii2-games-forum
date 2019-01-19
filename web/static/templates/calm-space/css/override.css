@@ -23,6 +23,11 @@ a, a:hover {
     background-repeat: no-repeat;
 }
 
+.cover:before{
+    content: "";
+    display: block;
+}
+
 #search-input{
     width: 100%;
 }
@@ -61,14 +66,6 @@ a, a:hover {
 	opacity: 0.7;
     position: relative;
     padding-top: 35%;
-}
-
-.carousel-img div{
-    position: absolute;
-    height: 100%;
-    top: 0;
-    left: 0
-
 }
 
 .carousel-item {
@@ -176,6 +173,16 @@ ul.ui-menu li:hover{
     display: block;
 }
 
+a.card{
+    color: #555555;
+    transition: opacity 1s;
+}
+
+a.card:hover{
+    text-decoration:none;
+    opacity: 0.5;
+}
+
 /* thread card */
 
 
@@ -196,8 +203,9 @@ ul.ui-menu li:hover{
 }
 
 .thread-card-body {
-    width: calc(100% - 120px);
+    width: calc(100% - 125px);
     padding: 15px;
+    padding-right: 0px;
 }
 
 .thread-card h3 {
@@ -290,41 +298,21 @@ ul.ui-menu li:hover{
     width: 50%;
 }
 
-/* responsive */
-
-@media (max-width: 575px) {
-    /* card */
-
-    .col-sm.half .card .cover{
-        position: relative;
-        padding-top: 120%;
-        min-height: 160px;
-    }
-
-    .card .cover div{
-        position: relative;
-        height: 100%;
-        top: 0;
-        left: 0
-    }
+.card .cover:before{
+    padding-top: 120%;
 }
 
+/* responsive */
+
 @media (min-width: 576px) {
-
-
     /* card */
 
     .card {
         width: 240px;
     }
-
-    .card .cover {
-        height: 288px;
-    }
 }
 
 @media (min-width: 768px) {
-
     /* heading */
 
     .heading a {
@@ -333,45 +321,26 @@ ul.ui-menu li:hover{
     }
 
     /* card */
-
     .card {
         width: 330px;
-    }
-
-    .card .cover {
-        height: 396px;
     }
 }
 
 @media (min-width: 992px) {
-
     /* auto complete*/
-
     #search-input {
         max-width: 300px;
     }
 
     /* card */
-
     .card {
         width: 210px;
-    }
-
-    .card .cover {
-        height: 252px;
     }
 }
 
 @media (min-width: 1200px) {
-
     /* card */
-
     .card {
         width: 255px;
-    }
-
-    .card .cover {
-        height: 306px;
-
     }
 }

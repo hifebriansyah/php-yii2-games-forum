@@ -52,11 +52,11 @@
         <div class="row">
             {foreach from=$popularGames item=val}
                 <div class="col-sm half">
-                    <div class="card">
+                    <a class="card" href="{$baseUrl}/game{substr($val['source_url'], 0, strpos($val['source_url'], '/', 1))}">
                         <div class="cover" style="background-image: url({$val['image_url']});"><div></div></div>
                         <h3 class="ellipsis">{$val['title']}</h3>
                         <span class="ellipsis">{$val['platform']}</span>
-                    </div>
+                    </a>
                 </div>
             {/foreach}
         </div>

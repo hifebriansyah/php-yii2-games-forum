@@ -1,4 +1,4 @@
 <?php
 return [
-    "GET admin-site" => "adminSite/slider/index",
+    "GET game/<url>" => "game/detail",
 ];
